@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://kit.fontawesome.com/3d027cf56e.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .search-container {
+            text-align: center;
+            width: 100%;
+            padding: 50px 0;
+            background-image: url('background.png');
+        }
+
+        #search-bar {
+            width: 60%;
+            padding: 15px 25px;
+            font-size: 16px;
+            border-radius: 20px;
+            border: none;
+        }
+
+        #search-bar:focus {
+            outline: none;
+        }
+
+        #search-button {
+            padding: 16px 25px;
+            font-size: 16px;
+            margin-left: 15px;
+            border: none;
+            background-color: #e60278;
+            border-radius: 20px;
+            color: white;
+            font-weight: 400;
+            transition: 0.15s;
+            text-transform: uppercase;
+        }
+
+        #search-button:hover {
+            background-color: #fd0585;
+        }
+
+        #results-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .panel {
+            border: 1px solid #eaecf1;
+            padding: 30px;
+            border-radius: 30px;
+        }
+
+        .panel img {
+            width: 100%;
+            height: 390px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 1px solid rgb(191, 191, 191);
+        }
+
+        .pagination {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .pagination button {
+            padding: 15px 25px;
+            font-size: 16px;
+            margin: 0 20px;
+            border: none;
+            background-color: #e60278;
+            border-radius: 10px;
+            color: white;
+            font-weight: bolder;
+            transition: 0.15s;
+        }
+
+        .pagination button:hover {
+            background-color: #fd0585;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        footer.pagination {
+            margin-top: auto;
+            padding-bottom: 20px;
+        }
+
+        header {
+            display: flex;
+        }
+
+        header .title {
+            font-family: "Noto Sans JP", sans-serif;
+            margin: 40px 80px 40px 14%;
+            font-size: 30px;
+        }
+
+        .information {
+            padding: 0;
+            font-family: "Noto Sans JP", sans-serif;
+            margin: 40px 10px;
+            padding-top: 7px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #e60278;
+            font-size: 20px;
+        }
+
+        .price-panel {
+            padding: 10px 15px;
+            background-color: #5e41de33;
+            width: 130px;
+            font-size: small;
+            color: #5D41DE;
+            border: 1px solid #5e41de4d;
+            text-align: center;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2 class="title">car co.</h2>
+    </header>
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search...">
+        <button id="search-button" type="submit">Search</button>
+    </div>
+    <div id="results-container"></div>
+    <div class="pagination">
+        <button id="prev-button" onclick="window.scrollTo(0, 0)"><i class="fa fa-arrow-left"></i></button>
+        <button id="next-button" onclick="window.scrollTo(0, 0)"><i class="fa fa-arrow-right"></i></button>
+    </div>
+    <footer>
+        &copy; 2024 Car & Company LLC All rights reserved.
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
