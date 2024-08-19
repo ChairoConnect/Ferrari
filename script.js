@@ -53,7 +53,7 @@ function displayResults(results) {
             panel.classList.add('panel');
             panel.innerHTML = `
                 <div class="image-zoom-container">
-                    <img style="margin-bottom:35px;" src="${result.image_url}" alt="${result.name}">
+                    <img src="${result.image_url}" alt="${result.name}">
                     <div class="price-panel" style="margin-top:35px;">${result.price}</div>
                 </div>
                 <h3>${result.name}</h3>
