@@ -60,12 +60,14 @@ function displayResults(results) {
                 <p>${result.description}</p>
                 <ul>
                     <li><strong>Speed:</strong> ${result.speed}</li>
-                    <li><strong>Engine Type:</strong> ${result.engine}</li>
+                    <li><strong>Engine Type:</strong> ${result.engine_type}</li>
                     <li><strong>Car Build:</strong> ${result.build}</li>
                     <li><strong>Weight:</strong> ${result.weight}</li>
                     <li><strong>Build Material:</strong> ${result.material}</li>
-                    <li><strong>History:</strong> ${result.history}</li>
+                    <li><strong>Engine Size</strong> ${result.engine_l}</li>
+                    <li><strong>Horsepower</strong> ${result.hp}</li>
                 </ul>
+                <p>${result.history}</p>
             `;
             container.appendChild(panel);
         });
