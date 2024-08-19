@@ -54,8 +54,7 @@ function displayResults(results) {
             panel.innerHTML = `
                 <div class="image-zoom-container">
                     <img src="${result.image_url}" alt="${result.name}">
-                    <br>
-                    <div class="price-panel">${result.price}</div>
+                    <div class="price-panel" style="margin-top:35px;">${result.price}</div>
                 </div>
                 <h3>${result.name}</h3>
                 <p>${result.description}</p>
