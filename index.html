@@ -22,12 +22,13 @@
         .search-container {
             text-align: center;
             width: 100%;
-            padding: 50px 0;
+            padding: 50px 0px;
             background-image: url('background.png');
         }
 
         #search-bar {
-            width: 60%;
+            width: 80%;
+            max-width: 600px;
             padding: 15px 25px;
             font-size: 16px;
             border-radius: 20px;
@@ -57,7 +58,7 @@
 
         #results-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
             gap: 20px;
             justify-content: center;
             padding: 20px;
@@ -68,11 +69,12 @@
             border: 1px solid #eaecf1;
             padding: 30px;
             border-radius: 30px;
+            background-color: #ffffff;
         }
 
         .panel img {
             width: 100%;
-            height: 390px;
+            height: 250px;
             object-fit: cover;
             border-radius: 20px;
             border: 1px solid rgb(191, 191, 191);
@@ -86,7 +88,7 @@
         .pagination button {
             padding: 15px 25px;
             font-size: 16px;
-            margin: 0 20px;
+            margin: 0 10px;
             border: none;
             background-color: #e60278;
             border-radius: 10px;
@@ -105,48 +107,90 @@
             padding: 10px;
             font-size: 14px;
             color: #555;
-        }
-
-        footer.pagination {
             margin-top: auto;
-            padding-bottom: 20px;
         }
 
         header {
             display: flex;
+            justify-content: center;
+            padding: 20px 10%;
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaecf1;
         }
 
         header .title {
             font-family: "Noto Sans JP", sans-serif;
-            margin: 40px 80px 40px 14%;
-            font-size: 30px;
+            font-size: 40px;
         }
 
         .information {
-            padding: 0;
             font-family: "Noto Sans JP", sans-serif;
-            margin: 40px 10px;
+            margin: 20px 10px;
             padding-top: 7px;
             padding-bottom: 5px;
             border-bottom: 2px solid #e60278;
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .price-panel {
             padding: 10px 15px;
             background-color: #5e41de33;
             width: 130px;
+            margin-top: 10px;
             font-size: small;
             color: #5D41DE;
             border: 1px solid #5e41de4d;
             text-align: center;
             border-radius: 15px;
         }
+
+        @media (max-width: 768px) {
+            #search-bar {
+                width: 50%;
+                margin-bottom: 15px;
+            }
+
+            #search-button {
+                width: 80%;
+                margin: 0;
+            }
+
+            .panel {
+                font-size: 10px;
+            }
+
+            .panel img {
+                height: 150px;
+            }
+
+            header .title {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #results-container {
+                grid-template-columns: 1fr;
+            }
+
+            header .title {
+                font-size: 30px;
+            }
+
+            #search-bar {
+                width: 70%;
+            }
+
+            .pagination button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h2 class="title">car co.</h2>
+        <h2 class="title">Car Co.</h2>
     </header>
     <div class="search-container">
         <input type="text" id="search-bar" placeholder="Search...">
