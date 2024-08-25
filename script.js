@@ -1,5 +1,5 @@
 let currentPage = 1;
-const resultsPerPage = 16;
+const resultsPerPage = 15;
 let debounceTimeout;
 let cars = [];
 
@@ -21,12 +21,12 @@ document.getElementById('search-bar').addEventListener('input', function() {
     debounceTimeout = setTimeout(() => {
         const processedQuery = processQuery(query);
         displayResults(filterResults(processedQuery));
-    }, 300); // Adjust the debounce delay as needed
+    }, 300);
 });
 
 document.getElementById('search-bar').addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent the default action of the Enter key
+        event.preventDefault();
         const query = document.getElementById('search-bar').value;
         const processedQuery = processQuery(query);
         displayResults(filterResults(processedQuery));
@@ -41,10 +41,22 @@ function filterResults(query) {
     return cars.filter(car => car.name && car.name.toLowerCase().includes(query));
 }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 function displayResults(results) {
     const container = document.getElementById('results-container');
     container.innerHTML = '';
-    const paginatedResults = results.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage);
+
+    // Shuffle results before displaying
+    const shuffledResults = shuffleArray(results);
+
+    const paginatedResults = shuffledResults.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage);
     if (paginatedResults.length === 0) {
         container.innerHTML = '<p>No results found for your query.</p>';
     } else {
@@ -52,7 +64,6 @@ function displayResults(results) {
             const panel = document.createElement('div');
             panel.classList.add('panel');
 
-            // Determine the logo to use based on the car name
             let logo = '';
             if (result.name.toLowerCase().includes('ferrari')) {
                 logo = 'ferrari_logo.png';
@@ -60,7 +71,6 @@ function displayResults(results) {
                 logo = 'lamborghini_logo.png';
             }
 
-            // Truncate history to 80 words
             const truncatedHistory = result.history.split(' ').slice(0, 50).join(' ') + '...';
 
             panel.innerHTML = `
@@ -102,4 +112,3 @@ function showFullHistory(carName, fullHistory) {
     `;
     document.body.appendChild(modal);
 }
-
