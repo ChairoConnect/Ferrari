@@ -51,12 +51,27 @@ function displayResults(results) {
         paginatedResults.forEach(result => {
             const panel = document.createElement('div');
             panel.classList.add('panel');
+
+            // Determine the logo to use based on the car name
+            let logo = '';
+            if (result.name.toLowerCase().includes('ferrari')) {
+                logo = 'ferrari_logo.png';
+            } else if (result.name.toLowerCase().includes('lamborghini')) {
+                logo = 'lamborghini_logo.png';
+            }
+
+            // Truncate history to 80 words
+            const truncatedHistory = result.history.split(' ').slice(0, 50).join(' ') + '...';
+
             panel.innerHTML = `
+                <h1 style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+                    <span>${result.name}</span>
+                    ${logo ? `<img src="${logo}" class="logo" style="height: 30px; border-radius: 0; margin-left: 30px">` : ''}
+                </h1>
                 <div class="image-zoom-container">
                     <img src="${result.image_url}" alt="${result.name}">
-                    <div class="price-panel" style="margin-top:20px;">${result.price}</div>
+                    <div class="price-panel">${result.price}</div>
                 </div>
-                <h3>${result.name}</h3>
                 <p>${result.description}</p>
                 <ul>
                     <li><strong>Speed (0-100kph):</strong> ${result.speed}</li>
@@ -64,10 +79,10 @@ function displayResults(results) {
                     <li><strong>Car Build:</strong> ${result.build}</li>
                     <li><strong>Weight:</strong> ${result.weight}</li>
                     <li><strong>Build Material:</strong> ${result.material}</li>
-                    <li><strong>Engine Size</strong> ${result.engine_l}</li>
-                    <li><strong>Horsepower</strong> ${result.hp}</li>
+                    <li><strong>Engine Size:</strong> ${result.engine_l}</li>
+                    <li><strong>Horsepower:</strong> ${result.hp}</li>
                 </ul>
-                <p>${result.history}</p>
+                <p>${truncatedHistory} <span onclick="showFullHistory('${result.name}', '${result.history.replace(/'/g, "\\'")}')">More</span></p>
             `;
             container.appendChild(panel);
         });
@@ -75,26 +90,16 @@ function displayResults(results) {
     updatePagination(results.length);
 }
 
-function updatePagination(totalResults) {
-    const prevButton = document.getElementById('prev-button');
-    const nextButton = document.getElementById('next-button');
-
-    prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage * resultsPerPage >= totalResults;
-
-    prevButton.onclick = function() {
-        if (currentPage > 1) {
-            currentPage--;
-            displayResults(filterResults(processQuery(document.getElementById('search-bar').value)));
-            window.scrollTo(0, 0);
-        }
-    };
-
-    nextButton.onclick = function() {
-        if (currentPage * resultsPerPage < totalResults) {
-            currentPage++;
-            displayResults(filterResults(processQuery(document.getElementById('search-bar').value)));
-            window.scrollTo(0, 0);
-        }
-    };
+function showFullHistory(carName, fullHistory) {
+    const modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-button" onclick="this.parentElement.parentElement.remove()">&times;</span>
+            <h3>History of the ${carName}</h3>
+            <p>${fullHistory}</p>
+        </div>
+    `;
+    document.body.appendChild(modal);
 }
+
