@@ -59,7 +59,7 @@ function displayResults(results) {
                 <h3>${result.name}</h3>
                 <p>${result.description}</p>
                 <ul>
-                    <li><strong>Speed:</strong> ${result.speed}</li>
+                    <li><strong>Speed (0-100kph):</strong> ${result.speed}</li>
                     <li><strong>Engine Type:</strong> ${result.engine_type}</li>
                     <li><strong>Car Build:</strong> ${result.build}</li>
                     <li><strong>Weight:</strong> ${result.weight}</li>
